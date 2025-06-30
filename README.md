@@ -56,9 +56,11 @@ A API disponibiliza os principais endpoints para CRUD de veículos, seguindo pad
   "ano": "1964",
   "cor": "Vermelho",
   "tipo_combustivel": "Gasolina",
-  "preco": 1.000.000.00,
+  "preco": "1.000.000,00"
   "modificacao": "Original"
 }
+```
+---
 
 🤝 Contribuições
 Fique à vontade para:
@@ -68,6 +70,10 @@ Fique à vontade para:
 
 💬 Toda contribuição é bem-vinda para aprimorar o projeto!
 
+---
+
 👩‍💻 Autora
+
 Angélica Parra de Lima
+
 🔗 github.com/angelicaparra

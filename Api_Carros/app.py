@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from Api_Carros.routers import router as carros_rota
 
 app = FastAPI(

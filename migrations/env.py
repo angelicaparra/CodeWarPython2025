@@ -4,9 +4,9 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+from Api_Carros.database import DATABASE_URL
 
-from fast_car_api.database import DATABASE_URL
-from fast_car_api.models import Base
+from Api_Carros.models import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

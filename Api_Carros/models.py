@@ -7,10 +7,9 @@ class Car(Base):
     __tablename__ = 'cars'
 
     id = Column(Integer, primary_key=True, index=True)
-    modelo = Column(String, nullable=False)
-    descricao = Column(String, nullable=False)
     marca = Column(String, nullable=True)
-    ano = Column(Integer, nullable=True)
+    modelo = Column(String, nullable=False)
     cor = Column(String, nullable=True)
+    ano = Column(Integer, nullable=True)
     tipo_combustivel = Column(String, nullable=True)
-    modificacao = Column(Text, nullable=True)
+    descricao = Column(String, nullable=False)

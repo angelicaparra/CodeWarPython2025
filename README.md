@@ -65,11 +65,13 @@ A API disponibiliza os principais endpoints para CRUD de veículos, seguindo pad
 
 -  Ruff e Taskipy
 
-É importante termos este comando abaixo para que possamos deixar todas as dependencias do projeto.
+
+
+
+
+É importante termos o "requirements.txt" para que possamos deixar todas as dependencias do projeto.
 
 pip freeze > requirements.txt
-
-
 
 ---
 

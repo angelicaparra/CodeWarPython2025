@@ -56,10 +56,21 @@ A API disponibiliza os principais endpoints para CRUD de veículos, seguindo pad
   "ano": "1964",
   "cor": "Vermelho",
   "tipo_combustivel": "Gasolina",
-  "preco": "1.000.000,00"
   "modificacao": "Original"
 }
 ```
+---
+
+## 💡 Ferramentas importantes na aplicação
+
+-  Ruff e Taskipy
+
+É importante termos este comando abaixo para que possamos deixar todas as dependencias do projeto.
+
+pip freeze > requirements.txt
+
+
+
 ---
 
 🤝 Contribuições

@@ -12,4 +12,4 @@ class Car(Base):
     cor = Column(String, nullable=True)
     ano = Column(Integer, nullable=True)
     tipo_combustivel = Column(String, nullable=True)
-    descricao = Column(String, nullable=False)
+    descricao = Column(String, nullable=True)

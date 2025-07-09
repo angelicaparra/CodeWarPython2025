@@ -50,13 +50,13 @@ A API disponibiliza os principais endpoints para CRUD de veículos, seguindo pad
 ```json
 {
   "id": "ID",
-  "modelo": "Fusca",
-  "descricao": "Clássico carro popular da VW",
   "marca": "Volkswagen",
-  "ano": "1964",
+  "modelo": "Fusca",
   "cor": "Vermelho",
+  "ano": "1964",
   "tipo_combustivel": "Gasolina",
-  "modificacao": "Original"
+  "modificacao": "Original",
+  "descricao": "Clássico carro popular da VW"
 }
 ```
 ---

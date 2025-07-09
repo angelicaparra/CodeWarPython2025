@@ -1,0 +1,25 @@
+[project]
+name = "API de Carros – Gerenciamento de Frotas Inteligente "
+version = "0.1.0"
+description = "Criado como parte do desafio CodeWar Python + Análise de Dados 2025"
+authors = [
+    {name = "Angélica Parra",email = "angelicaparraa@gmail.com"}
+]
+
+[tool.ruff]
+line-length = 79 
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.taskipy.tasks]
+lint = 'ruff check'
+lint_fix = 'ruff check --fix'
+format = 'ruff format'
+run = 'fastapi dev Api_Carros/app.py'

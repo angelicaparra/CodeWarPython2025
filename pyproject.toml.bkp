@@ -1,7 +1,0 @@
-[project]
-name = "API de Carros – Gerenciamento de Frotas Inteligente "
-version = "0.1.0"
-description = "Criado como parte do desafio "CodeWar Python + Análise de Dados 2025""
-authors = [
-    {name = "Angélica Parra",email = "angelicaparraa@gmail.com"}
-]

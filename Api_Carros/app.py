@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from Api_Carros.routers import router as carros_rota
 
 app = FastAPI(
@@ -9,7 +10,8 @@ app = FastAPI(
 
 app.include_router(carros_rota)
 
-#Declarando minha primeira rota
+
+# Declarando minha primeira rota
 @app.get('/')
 def read_root():
     return {'status': 'ok'}

@@ -9,6 +9,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
+
 # Função para chama a sessão
 def get_session():
     session = SessionLocal()  # cria uma conexão com banco

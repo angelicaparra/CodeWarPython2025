@@ -1,4 +1,5 @@
 from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -10,6 +11,7 @@ class CarSchema(BaseModel):
     tipo_combustivel: Optional[str] = None
     descricao: Optional[str] = None
 
+
 class CarPublic(BaseModel):
     id: int
     marca: str
@@ -18,6 +20,7 @@ class CarPublic(BaseModel):
     ano: Optional[int] = None
     tipo_combustivel: Optional[str] = None
     descricao: Optional[str] = None
+
 
 class CarPartialUpdate(BaseModel):
     marca: Optional[str] = None

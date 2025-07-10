@@ -116,7 +116,7 @@ def patch_car(
 #CRUD [DELETE]
 @router.delete(
     path='/{car_id}',
-    status_code=status.HTTTP_204_NO_CONTENT,#padrao para delete
+    status_code=status.HTTP_204_NO_CONTENT,#padrao para delete
 )
 def delete_car(
     car_id: int,

@@ -19,5 +19,14 @@ class CarPublic(BaseModel):
     tipo_combustivel: Optional[str] = None
     descricao: Optional[str] = None
 
+class CarPartialUpdate(BaseModel):
+    marca: Optional[str] = None
+    modelo: Optional[str] = None
+    cor: Optional[str] = None
+    ano: Optional[int] = None
+    tipo_combustivel: Optional[str] = None
+    descricao: Optional[str] = None
+
+
 class CarList(BaseModel):
     cars: list[CarPublic]

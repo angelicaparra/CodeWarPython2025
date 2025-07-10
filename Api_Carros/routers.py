@@ -6,6 +6,7 @@ from Api_Carros.database import get_session
 from Api_Carros.models import Car
 from Api_Carros.schemas import (
     CarList,
+    CarPartialUpdate,
     CarPublic,
     CarSchema,
 )
@@ -84,3 +85,48 @@ def update_car(
     session.commit()
     session.refresh(db_car)
     return db_car
+
+# CRUD [PATCH]
+@router.patch(
+    path='/{car_id}',
+    response_model=CarPublic,
+    status_code=status.HTTP_201_CREATED,
+)
+def patch_car(
+    car_id: int,
+    car: CarPartialUpdate,
+    session : Session = Depends(get_session),
+):
+    db_car = session.get(Car, car_id)
+    if not db_car:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Id não encontrado'
+        ) 
+# Utilizando função do python 'Dict Comprehensions' 
+# para percorrer a lista, no caso o json e vericar qual item estou alterando
+# e excluo o restante que não foi alterado para assim poder ser inserido
+    update_data = {k: v for k, v in car.model_dump(exclude_unset=True).items()}
+    for field, value in update_data.items():
+        setattr(db_car, field, value)
+    session.commit()
+    session.refresh(db_car)
+    return db_car
+
+#CRUD [DELETE]
+@router.delete(
+    path='/{car_id}',
+    status_code=status.HTTTP_204_NO_CONTENT,#padrao para delete
+)
+def delete_car(
+    car_id: int,
+    session : Session = Depends(get_session),
+):
+    car = session.get(Car, car_id)
+    if not car: #se não encontrar retorna erro 404
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Id não encontrado'
+        )
+    session.delete(car)
+    session.commit()

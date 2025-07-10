@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -34,7 +34,28 @@ def create_car(car: CarSchema,session: Session = Depends(get_session)): #incluin
     response_model=CarList,
     status_code=status.HTTP_200_OK,
 )
-def list_cars(session : Session = Depends(get_session)):
-    query = session.scalars(select(Car))
+def list_cars(
+    session : Session = Depends(get_session),
+    offset: int = 0, #limitando quantidades de registro quero ver
+    limit: int = 100,
+):
+    query = session.scalars(select(Car).offset(offset).limit(limit))
     cars = query.all()
     return {'cars': cars}
+# CRUD [GET POR ID]
+@router.get(
+    path='/{car_id}',
+    response_model=CarPublic,
+    status_code=status.HTTP_200_OK,
+)
+def get_car(
+    car_id: int,
+    session : Session = Depends(get_session),
+):
+    car = session.get(Car, car_id)
+    if not car: #se não encontrar retorna erro 404
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='Id não encontrado'
+        )
+    return car

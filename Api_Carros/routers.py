@@ -157,24 +157,36 @@ def importar_carros_etl(session: Session = Depends(get_session)):
             detail=f"Erro ao acessar a API externa: {detalhe_erro}"
         )
 
-    dados = response.json()[:5]  # limita a 5 carros
+    dados = response.json()[:5]
 
     carros_importados = []
 
     for carro in dados:
-        try:
-            novo_carro = Car(
-                marca=carro.get("make"),
-                modelo=carro.get("model"),
-                cor=None,
-                ano=carro.get("year"),
-                tipo_combustivel=carro.get("fuel_type"),
-                descricao=f"{carro.get('make')} {carro.get('model')} - {carro.get('fuel_type')} com {carro.get('horsepower', 0)} HP"
-            )
-            session.add(novo_carro)
-            carros_importados.append(novo_carro.modelo)
-        except Exception as e:
-            print(f"Erro ao inserir carro: {e}")
+        marca = carro.get("make")
+        modelo = carro.get("model")
+        ano = carro.get("year")
+
+        # Verifica se já existe no banco
+        existe = session.query(Car).filter(
+            Car.marca == marca,
+            Car.modelo == modelo,
+            Car.ano == ano
+        ).first()
+
+        if existe:
+            print(f"Carro {marca} {modelo} {ano} já existe. Pulando importação.")
+            continue
+
+        novo_carro = Car(
+            marca=marca,
+            modelo=modelo,
+            cor=None,
+            ano=ano,
+            tipo_combustivel=carro.get("fuel_type"),
+            descricao=f"{marca} {modelo} - {carro.get('fuel_type')} com {carro.get('horsepower', 0)} HP"
+        )
+        session.add(novo_carro)
+        carros_importados.append(modelo)
 
     session.commit()
 

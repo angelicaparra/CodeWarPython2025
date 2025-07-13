@@ -11,6 +11,10 @@ from Api_Carros.schemas import (
     CarSchema,
 )
 
+import requests
+from fastapi.responses import JSONResponse
+
+
 router = APIRouter(
     prefix='/api/v1/carros',
     tags=['carros'],
@@ -134,3 +138,47 @@ def delete_car(
         )
     session.delete(car)
     session.commit()
+
+#API
+API_KEY = "bPq0ChpCrtXkh702HFp3wQ==UNRpxWjXTEgOjDLt"
+HEADERS = {'X-Api-Key': API_KEY}
+
+@router.post("/etl/importar_carros", status_code=201)
+def importar_carros_etl(session: Session = Depends(get_session)):
+    url = "https://api.api-ninjas.com/v1/cars"
+    params = {"make": "ford"}
+
+    response = requests.get(url, headers=HEADERS, params=params)
+
+    if response.status_code != 200:
+        detalhe_erro = response.text
+        raise HTTPException(
+            status_code=response.status_code,
+            detail=f"Erro ao acessar a API externa: {detalhe_erro}"
+        )
+
+    dados = response.json()[:5]  # limita a 5 carros
+
+    carros_importados = []
+
+    for carro in dados:
+        try:
+            novo_carro = Car(
+                marca=carro.get("make"),
+                modelo=carro.get("model"),
+                cor=None,
+                ano=carro.get("year"),
+                tipo_combustivel=carro.get("fuel_type"),
+                descricao=f"{carro.get('make')} {carro.get('model')} - {carro.get('fuel_type')} com {carro.get('horsepower', 0)} HP"
+            )
+            session.add(novo_carro)
+            carros_importados.append(novo_carro.modelo)
+        except Exception as e:
+            print(f"Erro ao inserir carro: {e}")
+
+    session.commit()
+
+    return {
+        "importados": len(carros_importados),
+        "modelos": carros_importados
+    }

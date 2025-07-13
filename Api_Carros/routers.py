@@ -206,3 +206,18 @@ def importar_carros_etl(session: Session = Depends(get_session)):
         "importados": len(carros_importados),
         "modelos": carros_importados
     }
+
+
+@router.post("/importar-lote", status_code=201)
+def importar_lote(
+    carros: list[CarSchema],
+    session: Session = Depends(get_session)
+):
+    carros_salvos = []
+    for carro in carros:
+        novo_carro = Car(**carro.model_dump())
+        session.add(novo_carro)
+        carros_salvos.append(carro.modelo)
+
+    session.commit()
+    return {"importados": len(carros_salvos), "modelos": carros_salvos}

@@ -29,13 +29,25 @@ router = APIRouter(
 )
 def create_car(
     car: CarSchema, session: Session = Depends(get_session)
-):  # incluindo dependencia do banco
-    car = Car(**car.model_dump())
-    session.add(car)
-    session.commit()
-    session.refresh(car)
-    return car
+):
+    # Verificar se carro com mesma marca, modelo e ano já existe
+    carro_existente = session.query(Car).filter(
+        Car.marca == car.marca,
+        Car.modelo == car.modelo,
+        Car.ano == car.ano
+    ).first()
 
+    if carro_existente:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Carro já cadastrado no sistema."
+        )
+    # incluindo dependencia do banco
+    novo_carro = Car(**car.model_dump())
+    session.add(novo_carro)
+    session.commit()
+    session.refresh(novo_carro)
+    return novo_carro
 
 # CRUD [LISTAR]
 @router.get(

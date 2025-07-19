@@ -1,0 +1,95 @@
+/* assets/styles.css */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #212121; /* Fundo ligeiramente mais escuro */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.card {
+    background-color: #2c3e50; /* Cor de fundo do card ajustada */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    border: 1px solid #34495e; /* Borda sutil para os cards */
+}
+.card:hover {
+    transform: translateY(-7px); /* Efeito de elevação mais pronunciado */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    border-color: #007bff; /* Borda azul ao passar o mouse */
+}
+.button-style {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Sombra mais visível */
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
+    letter-spacing: 0.5px; /* Espaçamento entre letras */
+}
+.button-style:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Elevação sutil */
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4); /* Sombra mais intensa */
+}
+.etl-button-style {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.etl-button-style:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(40, 167, 69, 0.4);
+}
+h1 {
+    color: #ffffff;
+    font-weight: 700; /* Título mais pesado */
+}
+h3 {
+    color: #ffffff; /* Títulos dos cards brancos */
+    font-weight: 600;
+}
+p {
+    color: #e0e0e0; /* Cor de parágrafo mais clara para contraste */
+    line-height: 1.6; /* Altura da linha para melhor leitura */
+}
+strong {
+    color: #ffffff; /* Garante que o texto em negrito seja branco */
+}
+
+/* Estilos para dcc.Dropdown options para melhor visibilidade */
+.Select-control, .Select-menu-outer, .Select-single-value {
+    background-color: #34495e !important; /* Fundo escuro para o controle e menu do dropdown */
+    color: #ffffff !important; /* Texto branco para o valor selecionado */
+    border: 1px solid #444 !important; /* Borda sutil */
+}
+
+.Select-option {
+    background-color: #34495e !important; /* Fundo escuro para as opções */
+    color: #ffffff !important; /* Texto branco para as opções */
+}
+
+.Select-option.is-focused {
+    background-color: #007bff !important; /* Destaque azul ao passar o mouse/focar */
+    color: #ffffff !important;
+}
+
+.Select-value-label {
+    color: #ffffff !important; /* Garante que o texto do valor selecionado seja branco */
+}
